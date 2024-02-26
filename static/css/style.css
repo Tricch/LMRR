@@ -1,0 +1,184 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background: linear-gradient(to bottom left, rgba(0, 0, 0, 0.8), black);
+  --primary-color: #ffc222;
+  --text-color: rgba(255, 255, 255, 0.9);
+  --dark-mode: rgb(38, 38, 38);
+  --primary-font: "Roboto", sans-serif;
+}
+
+body {
+  height: 100vh;
+  font-family: var(--primary-font);
+  background-image: var(--background);
+  background-repeat: no-repeat;
+}
+
+/* ############################# Navbar ###############################*/
+.navbar{
+    position: absolute;
+    width: 100%;
+}
+
+.navbar-brand {
+  font-size: 2.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--text-color);
+}
+
+.nav-item {
+  padding: 0 0.5rem;
+}
+
+.nav-link {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: var(--primary-color);
+}
+
+.navbar-toggler{
+    color: var(--text-color);
+    border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* ################# Login Page and Signup Page ##################*/
+.modal-content{
+    padding: 20px 40px;
+    background-color: var(--dark-mode);
+}
+
+.modal-title{
+    flex: 100%;
+    text-align: center;
+    font-size: 2.2rem !important;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.btn-close{
+    position: relative;
+    top: -30px;
+    left: 35px;
+    font-size: 1.2rem;
+    opacity: 1;
+}
+
+.modal-body form{
+    padding: 10px 0 30px 0;
+}
+
+.form-control, .form-control:active{
+    background-color: transparent !important;
+    font-size: 1.2rem;
+    color: var(--text-color) !important;
+}
+
+.form-control::placeholder{
+  color: rgb(140, 140, 140);
+}
+
+.password-style button{
+  background-color: transparent;
+  color: var(--text-color);
+  border: none;
+  width: auto !important;
+  transition: none;
+  position: absolute;
+  top: 73px;
+  left: 360px;
+}
+
+.password-style button i {
+  font-size: 1rem;
+}
+
+.password-style button:hover, .password-style button:active{
+  background-color: transparent !important;
+}
+
+.modal-body button{
+    font-size: 1.3rem;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modal-body p{
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+/* ########################## Genre Selection ######################## */
+.genre{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  padding: 30px 0;
+}
+
+.genre label{
+  width: 100%;
+  padding: 40px 0;
+  font-size: 1.5rem;
+  background-color: var(--dark-mode);
+  border: var(--primary-color) solid 1px;
+  color: var(--text-color);
+}
+
+.genre label:hover{
+  background-color: var(--primary-color) !important;
+  color: var(--dark-mode) !important;
+  border: var(--primary-color) solid 1px !important;
+  font-weight: 600;
+}
+
+.genre input[type='checkbox']:checked + label{
+  color: var(--dark-mode);
+  font-weight: 600;
+  background-color: var(--primary-color);
+}
+
+/* ######################### Main Section ######################### */
+.main-section{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main-section h1,p{
+    color: var(--text-color);
+    font-size: 3.2rem;
+    letter-spacing: 2px;
+    line-height: 4rem;
+    text-transform: capitalize;
+}
+
+.main-section p{
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.main-section img{
+    width: 700px;
+    mix-blend-mode: screen;
+}

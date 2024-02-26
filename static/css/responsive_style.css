@@ -1,0 +1,155 @@
+@media (max-width: 1500px) {
+  .main-section h1,
+  p {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+  .main-section p {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+  .main-section img {
+    width: 500px;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar {
+    text-align: center;
+  }
+  .nav-item {
+    border-bottom: var(--text-color) 1px solid;
+  }
+  .main-section h1,
+  p {
+    font-size: 2rem;
+    line-height: normal;
+  }
+  .main-section p {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+  }
+  .main-section img {
+    width: 450px;
+  }
+}
+
+@media (max-width: 787px) {
+  .main-section div {
+    padding: 35px;
+  }
+
+  .main-section {
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+  }
+  .main-section h1,
+  p {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    letter-spacing: 3px;
+  }
+  .main-section p {
+    font-size: 1.3rem;
+    line-height: 2rem;
+  }
+  .main-section img {
+    width: 450px;
+  }
+}
+
+@media (max-width: 578px) {
+  .navbar-brand {
+    padding-left: 30px;
+  }
+  .main-section h1,
+  p {
+    font-size: 2.1rem;
+    line-height: 2.5rem;
+    letter-spacing: 3px;
+  }
+  .main-section p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .main-section img {
+    width: 350px;
+  }
+  .password-style {
+    display: flex;
+    align-items: center;
+  }
+  .password-style input {
+    border-right: none;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .password-style button {
+    background-color: transparent;
+    color: var(--text-color);
+    border: white solid 1px;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    transition: none;
+    margin: 0;
+    position: unset;
+  }
+  .password-style button i {
+    font-size: 1rem;
+  }
+  .password-style button:hover,
+  .password-style button:active {
+    color: var(--text-color);
+    background-color: transparent !important;
+    border: white solid 1px !important;
+    border-left: none !important;
+  }
+}
+
+@media (max-width: 440px) {
+  .main-section div {
+    padding: 25px;
+  }
+  .main-section h1,
+  p {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: 3px;
+  }
+  .main-section p {
+    font-size: 0.8rem;
+    letter-spacing: normal;
+    line-height: normal;
+  }
+  .main-section img {
+    width: 300px;
+  }
+  .genre {
+    grid-template-columns: 1fr;
+  }
+  .genre label {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 350px) {
+  .main-section div {
+    padding: 20px;
+  }
+  .main-section h1,
+  p {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    letter-spacing: 2px;
+  }
+  .main-section p {
+    font-size: 0.6rem;
+    letter-spacing: normal;
+    line-height: normal;
+  }
+  .main-section img {
+    width: 200px;
+  }
+}
