@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as lgn, logout as lgo
 from django.contrib import messages
-
+from .models import Restaurant
 
 def home(request):
     return render(request, 'index.html')
@@ -31,10 +31,9 @@ def login(request):
         if user is not None:
             lgn(request, user)
             messages.success(request, "You've logged in successfully!")
-            return render(request, "index.html")
+            return redirect('dashboard')
         else:
             messages.error(request, "Invalid username or password")
-            return redirect('dashboard')
     return render(request, 'index.html')
 
 def logout(request):
@@ -43,4 +42,7 @@ def logout(request):
     return redirect('home')
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    all_restu = Restaurant.objects.all().order_by("-pk")
+    params = {'resturants':all_restu}
+    
+    return render(request, 'dashboard.html',params)

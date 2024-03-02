@@ -17,8 +17,12 @@ class Restaurant(models.Model):
     performer = models.CharField(max_length=100, default="")
     ratings = models.CharField(max_length=100, default="")
     day = models.CharField(max_length=100, default="")
-    time = models.CharField(max_length=100)
+    time = models.CharField(max_length=100, default="")
     rest_image = models.ImageField(upload_to='restaurant', default="")
+
+    
+    # start_time = models.TimeField(null=True,blank=True)
+    # end_time = models.TimeField(null=True,blank=True)
 
     def __str__(self):
         return self.rest_name

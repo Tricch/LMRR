@@ -184,3 +184,7 @@ body {
     width: 700px;
     mix-blend-mode: screen;
 }
+.alert.alert-success.alert-dismissible.fade.show {
+  position: absolute;
+  right: 0;
+}

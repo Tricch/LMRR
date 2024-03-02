@@ -1,0 +1,52 @@
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+        <button
+          type="button"
+          class="btn-close btn-close-white closeMe"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="login" method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              aria-describedby="emailHelp"
+              placeholder="Username"
+            />
+          </div>
+          <div class="mb-3 password-style">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Password"
+            />
+            <button class="btn btn-primary" type="button" class="btn">
+              <i class="fa-solid fa-eye-slash" id="eyeicon"></i>
+            </button>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <p>
+          Don't have an account?<a
+            href="#"
+            class="text-decoration-none"
+            data-bs-toggle="modal"
+            data-bs-target="#signup"
+          >
+            Signup</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
