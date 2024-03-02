@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block title %} Dashboard {% endblock title %}
 {% block css %}
 :root {
@@ -10,7 +12,6 @@
     --thumb: #edf2f4;
 }
 body {
-    font: 16px / 24px "Roboto", sans-serif;
     color: var(--black);
     background: var(--platinum);
 }
@@ -50,7 +51,8 @@ h2 {
     background: var(--orange);
 }
 .card img{
-    object-fit: contain;
+    height: 180px;
+    object-fit: cover;
     margin-bottom: 10px;
 }
 .card .card-title {
@@ -107,9 +109,7 @@ h2 {
 }
 {% endblock css %}
 {% block body %}
-{% load static %}
-<div class="container">
-    
+<div class="container">    
     <h2>Genre</h2>
     <ul class="cards">
 
