@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,24 +22,37 @@
     <link rel="icon" href="static/images/logo.png" type="image/x-icon" />
 
     <!-- ################################### My CSS ########################## -->
-    <link rel="stylesheet" href="static/css/style.css" />
-    <link rel="stylesheet" href="static/css/responsive_style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/responsive_style.css' %}" />
   </head>
-  {% comment %} {% if openModal %}
+
+  {% if openModal %}
   <style>
-    #login {
-      display: block;
-      opacity: 1;
+    .openmodal{
+      display: block !important;
+      opacity: 1 !important;
     }
   </style>
-  {% endif %} {% endcomment %}
+  {% endif %} 
 
   <body>
 
     {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" style="
+      margin: 8px 15px;
+      min-width: 35%;
+      float: right;
+      padding: 20px;
+      z-index: 1;
+      background-color: aliceblue;
+      font-size: 1.1rem;"
+      role="alert">
       <strong>Message:</strong> {{ message }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <button type="button" class="btn-close" style="
+        padding: 0;
+        position: unset;
+        float: right;" 
+        data-bs-dismiss="alert" aria-label="Close"></button>
       <span aria-hidden="true"></span>
     </div>
     {% endfor %}    
@@ -60,8 +75,6 @@
             <i class="fas fa-stream"></i>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-
-           {% if user.is_authenticated %}
            <ul class="navbar-nav ms-auto">
              <li class="nav-item">
                <a
@@ -81,18 +94,13 @@
                  >SIGNUP</a
                >
              </li>
-             
-             {% else %}
-             <h3 class="text-success mt-2 ms-2">Welcome, {{user.username}}!</h3>
-             <li class="nav-item">
+             <!-- <li class="nav-item">
               <a
                 class="nav-link"
-                href="#"
+                href="/logout"
                 >LOGOUT</a
               >
-            </li>
-             
-             {% endif %}
+            </li>  -->
             </ul>
           </div>
         </div>
@@ -100,6 +108,18 @@
     </header>
 
     <!-- ################################## Login Modal ############################### -->
+    {% if openModal %}
+    <div
+      class="modal fade openmodal"
+      id="login"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      aria-hidden="true"
+      aria-labelledby="exampleModalToggleLabel"
+      tabindex="-1"
+    >
+    {% else %}
+
     <div
       class="modal fade"
       id="login"
@@ -109,13 +129,15 @@
       aria-labelledby="exampleModalToggleLabel"
       tabindex="-1"
     >
+
+    {% endif %}
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
             <button
               type="button"
-              class="btn-close btn-close-white"
+              class="btn-close btn-close-white closeMe"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
@@ -371,5 +393,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="static/js/script.js"></script>
+
   </body>
 </html>
