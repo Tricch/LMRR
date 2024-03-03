@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Restaurant{% endblock title %}
+
+{% comment %} {% for restu in restaurants %}
+{% block title %} {{restu.rest_name}} {% endblock title %}
+{% endfor %}  {% endcomment %}
+
+{% block css %}
+:root {
+    --orange: #fd9940;
+    --darkorange: #dd7d25;
+    --platinum: #e5e5e5;
+    --black: #2b2d42;
+    --white: #fff;
+    --thumb: #edf2f4;
+}
+body {
+    color: var(--black);
+    background: var(--platinum);
+}
+.container {
+    max-width: 1400px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+.rest-container{
+    display: flex;
+    margin: 5% auto;
+}
+.rest-img{
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+.rest-content{
+    padding: 10px 60px;
+    font-size: 20px;
+}
+h2 {
+    font-size: 32px;
+    margin: 40px 0 20px;
+}
+
+{% endblock css %}
+
+{% block body %}
+    <div class="container rest-container">
+        <img src="{% static 'images/music.jpg' %}" alt="..." class="rest-img">
+        <div class="rest-content">
+            <h2>Restaurant name</h2>
+            <p>Location:</p>
+            <p>Genre:</p>
+            <p>Performer:</p>
+            <p>Date and Time of performance:</p>
+            <p>Ratings:</p>
+        </div>
+    </div>
+
+    <div class="container">    
+        <h2 class="rec-title">You may also like:</h2>
+        <ul class="cards">
+    
+            {% for restu in resturants %}
+            <li class="card">
+                <div>
+                    <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
+                    <h3 class="card-title">{{restu.rest_name}}</h3>
+                    <div class="card-content">
+                        <p>{{restu.location}}</p>
+                        <p>Genre: {{restu.genre}}</p>
+                        <p>Performance: {{restu.day}}</p>
+                        <p>Rating: {{restu.ratings}} / 5</p>
+                    </div>
+                </div>
+                <div class="card-link-wrapper">
+                    <a href="/restaurant" class="card-link">Learn More</a>
+                </div>
+            </li>
+            {% endfor %}
+         
+        </ul>
+    </div>
+{% endblock body%}

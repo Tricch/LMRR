@@ -44,9 +44,18 @@ def logout(request):
 def dashboard(request):
     if request.user.is_authenticated:
         all_restu = Restaurant.objects.all().order_by("-pk")
-        params = {'resturants':all_restu}
+        params = {'resturants': all_restu}
 
         return render(request, 'dashboard.html', params)
+    else:
+        return redirect('home')
+    
+def restaurant(request):
+    if request.user.is_authenticated:
+        all_restu = Restaurant.objects.all().order_by("-pk")
+        params = {'resturants': all_restu}
+
+        return render(request, 'restaurant.html', params)
     else:
         return redirect('home')
 
