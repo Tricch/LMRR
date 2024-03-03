@@ -110,7 +110,7 @@ h2 {
 {% endblock css %}
 {% block body %}
 <div class="container">    
-    <h2>Genre</h2>
+    <h2>Recommended for you</h2>
     <ul class="cards">
 
         {% for restu in resturants %}
@@ -119,7 +119,56 @@ h2 {
                 <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
                 <h3 class="card-title">{{restu.rest_name}}</h3>
                 <div class="card-content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <p>{{restu.location}}</p>
+                    <p>Genre: {{restu.genre}}</p>
+                    <p>Performance: {{restu.day}}</p>
+                    <p>Rating: {{restu.ratings}} / 5</p>
+                </div>
+            </div>
+            <div class="card-link-wrapper">
+                <a href="" class="card-link">Learn More</a>
+            </div>
+        </li>
+        {% endfor %}
+     
+    </ul>
+</div>
+<div class="container">    
+    <h2>Acoustic</h2>
+    <ul class="cards">
+
+        {% for restu in resturants %}
+        <li class="card">
+            <div>
+                <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
+                <h3 class="card-title">{{restu.rest_name}}</h3>
+                <div class="card-content">
+                    <p>{{restu.location}}</p>
+                    <p>Performance: {{restu.day}}</p>
+                    <p>Rating: {{restu.ratings}} / 5</p>
+                </div>
+            </div>
+            <div class="card-link-wrapper">
+                <a href="" class="card-link">Learn More</a>
+            </div>
+        </li>
+        {% endfor %}
+     
+    </ul>
+</div>
+<div class="container">    
+    <h2>Instrumental</h2>
+    <ul class="cards">
+
+        {% for restu in resturants %}
+        <li class="card">
+            <div>
+                <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
+                <h3 class="card-title">{{restu.rest_name}}</h3>
+                <div class="card-content">
+                    <p>{{restu.location}}</p>
+                    <p>Performance: {{restu.day}}</p>
+                    <p>Rating: {{restu.ratings}} / 5</p>
                 </div>
             </div>
             <div class="card-link-wrapper">

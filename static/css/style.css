@@ -152,7 +152,7 @@ body {
   font-weight: 600;
 }
 
-.genre input[type="checkbox"]:checked + label {
+.genre input[type="checkbox"]:checked+label {
   color: var(--dark-mode);
   font-weight: 600;
   background-color: var(--primary-color);

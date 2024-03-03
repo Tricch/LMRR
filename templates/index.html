@@ -2,174 +2,100 @@
 {% load static %}
 {% block title %} Home {% endblock title %}
 
+{% block body %}
 
 {% if openModal %}
-  <style>
-    .openmodal{
-      display: block !important;
-      opacity: 1 !important;
-    }
-  </style>
-{% endif %} 
-
-{% block body %}
+<style>
+  .openmodal {
+    display: block !important;
+    opacity: 1 !important;
+  }
+</style>
+{% endif %}
 
 <!-- ################################## Login Modal ############################### -->
 {% if openModal %}
-    <div
-      class="modal fade openmodal"
-      id="login"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      aria-hidden="true"
-      aria-labelledby="exampleModalToggleLabel"
-      tabindex="-1"
-    >
-    {% else %}
+  <div class="modal fade openmodal" id="login" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+  aria-labelledby="exampleModalToggleLabel" tabindex="-1">
 
-    <div
-      class="modal fade"
-      id="login"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      aria-hidden="true"
-      aria-labelledby="exampleModalToggleLabel"
-      tabindex="-1"
-    >
+{% else %}
+  <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    aria-labelledby="exampleModalToggleLabel" tabindex="-1">
 
-    {% endif %}
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
-            <button
-              type="button"
-              class="btn-close btn-close-white closeMe"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form action="login" method="post">
-              {% csrf_token %}
-              <div class="mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="username"
-                  name="username"
-                  aria-describedby="emailHelp"
-                  placeholder="Username"
-                />
-              </div>
-              <div class="mb-3 password-style">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                />
-                <button class="btn btn-primary" type="button" class="btn">
-                  <i class="fa-solid fa-eye-slash" id="eyeicon"></i>
-                </button>
-              </div>
-              <button type="submit" class="btn btn-primary">Login</button>
-            </form>
-            <p>
-              Don't have an account?<a
-                href="#"
-                class="text-decoration-none"
-                data-bs-toggle="modal"
-                data-bs-target="#signup"
-              >
-                Signup</a
-              >
-            </p>
-          </div>
+{% endif %}
+
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+          <button type="button" class="btn-close btn-close-white closeMe" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="login" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp"
+                placeholder="Username" />
+            </div>
+            <div class="mb-3 password-style">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+              <button class="btn btn-primary" type="button" class="btn">
+                <i class="fa-solid fa-eye-slash" id="eyeicon"></i>
+              </button>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+          <p>
+            Don't have an account?<a href="#" class="text-decoration-none" data-bs-toggle="modal"
+              data-bs-target="#signup">
+              Signup</a>
+          </p>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- #################################### Signup Modal ############################ -->
-    <div
-      class="modal fade"
-      id="signup"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Signup</h1>
-            <button
-              type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form action="signup" method="POST">
-              {% csrf_token %}
-              <div class="mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="username"
-                  placeholder="Username"
-                />
-              </div>
-              <div class="mb-3">
-                <input
-                  type="email"
-                  class="form-control"
-                  name="email1"
-                  id="email1"
-                  aria-describedby="emailHelp"
-                  placeholder="Email address"
-                />
-              </div>
-              <div class="mb-3 password-style">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password1"
-                  name="password1"
-                  placeholder="Password"
-                />
-              </div>
-              <div class="mb-3 password-style">
-                <input
-                  type="password"
-                  class="form-control"
-                  name="password2"
-                  id="password2"
-                  placeholder="Confirm Password"
-                />
-              </div>
-              <button type="submit" class="btn btn-primary">Signup</button>
-            </form>
-            <p>
-              Already have an account?<a
-                href="#"
-                class="text-decoration-none"
-                data-bs-toggle="modal"
-                data-bs-target="#login"
-              >
-                Login</a
-              >
-            </p>
-          </div>
+  <!-- #################################### Signup Modal ############################ -->
+  <div class="modal fade" id="signup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Signup</h1>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="signup" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <input type="text" class="form-control" name="username" placeholder="Username" />
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" name="email1" id="email1" aria-describedby="emailHelp"
+                placeholder="Email address" />
+            </div>
+            <div class="mb-3 password-style">
+              <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" />
+            </div>
+            <div class="mb-3 password-style">
+              <input type="password" class="form-control" name="password2" id="password2"
+                placeholder="Confirm Password" />
+            </div>
+            <button type="submit" class="btn btn-primary">Signup</button>
+          </form>
+          <p>
+            Already have an account?<a href="#" class="text-decoration-none" data-bs-toggle="modal"
+              data-bs-target="#login">
+              Login</a>
+          </p>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ############################## Genre Selection ######################## -->
-    <!-- <div
+  <!-- ############################## Genre Selection ######################## -->
+  <!-- <div
       class="modal fade"
       id="genre"
       data-bs-backdrop="static"
@@ -267,29 +193,30 @@
       </div>
     </div> -->
 
-    <!-- ################################## Main Section ############################# -->
-    <section>
-      <div class="container-fluid main-section">
-        <div>
-          <h1>
-            LIVE MUSIC <br />
-            RESTAURANT <br />
-            RECOMMENDATION <br />
-            SYSTEM
-          </h1>
-          <p>
-            "Immerse yourself in the flavors of live music and culinary
-            delights."
-          </p>
-        </div>
-        <div>
-          <img src="static/images/landing_img.jpg" alt="..." />
-        </div>
+  <!-- ################################## Main Section ############################# -->
+  <section>
+    <div class="container-fluid main-section">
+      <div>
+        <h1>
+          LIVE MUSIC <br />
+          RESTAURANT <br />
+          RECOMMENDATION <br />
+          SYSTEM
+        </h1>
+        <p>
+          "Immerse yourself in the flavors of live music and culinary
+          delights."
+        </p>
       </div>
-    </section>
-    {% endblock body %}
+      <div>
+        <img src="static/images/landing_img.jpg" alt="..." />
+      </div>
+    </div>
+  </section>
+  {% endblock body %}
 
-    <!-- ################################# Javascript cdn ########################## -->
+  <!-- ################################# Javascript cdn ########################## -->
 
   </body>
-</html>
+
+  </html>
