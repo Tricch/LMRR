@@ -72,8 +72,139 @@ h2 {
         </ul>
     </div>
 
-    <!-- Filter Pop -->
-    <div class="pop">
+  
+      <!-- Acoustic -->
+    <div class="acoustic">
+        <h2 class="rec-title">Acoustic</h2>
+        <ul class="cards">
+
+            {% for acous in acoustic %}
+            <li class="card">
+                <div>
+                    <img src="{{MEDIA_ROOT}}{{acous.rest_image.url}}" class="card-img-top" alt="...">
+                    <h3 class="card-title">{{acous.rest_name}}</h3>
+                    <div class="card-content">
+                        <p>{{acous.location}}</p>
+                        <div class="info">
+                            <p><span>Performance</span> {{acous.day}}</p>
+                            <p><span>Rating:</span> {{acous.ratings}} / 5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link-wrapper">
+                    <a href="{% url 'restaurant' acous.pk %}" class="card-link">Learn More</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Ambient -->
+    <div class="ambient">
+        <h2 class="rec-title">Ambient</h2>
+        <ul class="cards">
+
+            {% for ambie in ambient %}
+            <li class="card">
+                <div>
+                    <img src="{{MEDIA_ROOT}}{{ambie.rest_image.url}}" class="card-img-top" alt="...">
+                    <h3 class="card-title">{{ambie.rest_name}}</h3>
+                    <div class="card-content">
+                        <p>{{ambie.location}}</p>
+                        <div class="info">
+                            <p><span>Performance</span> {{ambie.day}}</p>
+                            <p><span>Rating:</span> {{ambie.ratings}} / 5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link-wrapper">
+                    <a href="{% url 'restaurant' ambie.pk %}" class="card-link">Learn More</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Classical -->
+    <div class="classical">
+        <h2 class="rec-title">Classical</h2>
+        <ul class="cards">
+
+            {% for classic in classical %}
+            <li class="card">
+                <div>
+                    <img src="{{MEDIA_ROOT}}{{classic.rest_image.url}}" class="card-img-top" alt="...">
+                    <h3 class="card-title">{{classic.rest_name}}</h3>
+                    <div class="card-content">
+                        <p>{{classic.location}}</p>
+                        <div class="info">
+                            <p><span>Performance</span> {{classic.day}}</p>
+                            <p><span>Rating:</span> {{clasiic.ratings}} / 5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link-wrapper">
+                    <a href="{% url 'restaurant' classic.pk %}" class="card-link">Learn More</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+     <!-- Instrumental -->
+ <div class="instrumental">
+    <h2 class="rec-title">Instrumental</h2>
+    <ul class="cards">
+
+        {% for instru in instrumental %}
+        <li class="card">
+            <div>
+                <img src="{{MEDIA_ROOT}}{{instru.rest_image.url}}" class="card-img-top" alt="...">
+                <h3 class="card-title">{{instru.rest_name}}</h3>
+                <div class="card-content">
+                    <p>{{instru.location}}</p>
+                    <div class="info">
+                        <p><span>Performance</span> {{instru.day}}</p>
+                        <p><span>Rating:</span> {{instru.ratings}} / 5</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-link-wrapper">
+                <a href="{% url 'restaurant' instru.pk %}" class="card-link">Learn More</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+    <!-- Jazz -->
+    <div class="jazz">
+        <h2 class="rec-title">Jazz</h2>
+        <ul class="cards">
+
+            {% for jaz in jazz %}
+            <li class="card">
+                <div>
+                    <img src="{{MEDIA_ROOT}}{{jaz.rest_image.url}}" class="card-img-top" alt="...">
+                    <h3 class="card-title">{{jaz.rest_name}}</h3>
+                    <div class="card-content">
+                        <p>{{jaz.location}}</p>
+                        <div class="info">
+                            <p><span>Performance</span> {{jaz.day}}</p>
+                            <p><span>Rating:</span> {{jaz.ratings}} / 5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-link-wrapper">
+                    <a href="{% url 'restaurant' jaz.pk %}" class="card-link">Learn More</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+      <!-- Pop -->
+      <div class="pop">
         <h2 class="rec-title">Pop</h2>
         <ul class="cards">
 
@@ -92,32 +223,6 @@ h2 {
                 </div>
                 <div class="card-link-wrapper">
                     <a href="{% url 'restaurant' pop.pk %}" class="card-link">Learn More</a>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <!-- Instrumental -->
-    <div class="instrumental">
-        <h2 class="rec-title">Instrumental</h2>
-        <ul class="cards">
-
-            {% for instru in instrumental %}
-            <li class="card">
-                <div>
-                    <img src="{{MEDIA_ROOT}}{{instru.rest_image.url}}" class="card-img-top" alt="...">
-                    <h3 class="card-title">{{instru.rest_name}}</h3>
-                    <div class="card-content">
-                        <p>{{instru.location}}</p>
-                        <div class="info">
-                            <p><span>Performance</span> {{instru.day}}</p>
-                            <p><span>Rating:</span> {{instru.ratings}} / 5</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-link-wrapper">
-                    <a href="{% url 'restaurant' instru.pk %}" class="card-link">Learn More</a>
                 </div>
             </li>
             {% endfor %}

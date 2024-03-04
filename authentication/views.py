@@ -47,11 +47,20 @@ def logout(request):
 def dashboard(request):
     if request.user.is_authenticated:
         all_restu = Restaurant.objects.all().order_by("-pk")
-        pop_restu = Restaurant.objects.all().filter(genre= 'Pop')
+        acous_restu = Restaurant.objects.all().filter(genre= 'Acoustic')
+        ambie_restu = Restaurant.objects.all().filter(genre= 'Ambient')
+        classic_restu = Restaurant.objects.all().filter(genre= 'Classical')
         intru_restu = Restaurant.objects.all().filter(genre= 'Instrumental')
+        jaz_restu = Restaurant.objects.all().filter(genre= 'Jazz')
+        pop_restu = Restaurant.objects.all().filter(genre= 'Pop')
+        
         params = {'resturants': all_restu, 
-                  'pops': pop_restu,
-                  'instrumental': intru_restu}
+                  'acoustic': acous_restu,
+                  'ambient': ambie_restu,
+                  'classical': classic_restu,
+                  'instrumental': intru_restu,
+                  'jazz': jaz_restu,
+                  'pops': pop_restu,}
 
         return render(request, 'dashboard.html', params)
     else:
