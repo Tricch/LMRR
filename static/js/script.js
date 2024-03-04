@@ -1,10 +1,10 @@
 // Navbar hide
 let navBar = document.querySelectorAll(".nav-link");
 let navCollapse = document.querySelector(".navbar-collapse");
-navBar.forEach(function(a){
-    a.addEventListener("click", function(){
-        navCollapse.classList.remove("show");
-    })
+navBar.forEach(function (a) {
+  a.addEventListener("click", function () {
+    navCollapse.classList.remove("show");
+  })
 })
 
 document.querySelector(".closeMe").addEventListener("click", () => {
@@ -23,3 +23,6 @@ eyeicon.onclick = function () {
     eyeicon.className = "fa-regular fa-eye-slash";
   }
 };
+
+
+// Ratings
