@@ -29,6 +29,7 @@ body {
     margin: -12px 0 3rem 0;
 }
 .rest-container{
+    padding-left: 100px;
     display: flex;
     margin: 5% auto;
 }
@@ -38,32 +39,43 @@ body {
     border-radius: 10px;
 }
 .rest-content{
-    padding: 0 60px;
+    padding: 15px 60px;
     font-size: 20px;
 }
 h2 {
     font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 .rate-review{
     margin-top: 80px;
     gap: 40px;
 }
-
+.info{
+    line-height: normal;
+    margin-top: 35px;
+}
+.info span{
+    font-weight: 600;
+}
 {% endblock css %}
 
 {% block body %}
     <!-- Restaurant Details -->
     {% for details in one_restu %}
     <div class="container rest-container">
-        <img src="{% static 'images/music.jpg' %}" alt="..." class="rest-img">
+        <img src="{{MEDIA_ROOT}}{{details.rest_image.url}}" alt="..." class="rest-img">
         <div class="rest-content">
             <h2>{{details.rest_name}}</h2>
             <p>{{details.location}}</p>
-            <p>Genre: {{details.genre}}</p>
-            <p>Performer: {{details.performer}}</p>
-            <p>Day of performance: {{details.day}}</p>
-            <p>Time of performance: {{details.time}}</p>
-            <p>Ratings: {{details.ratings}}/5</p>
+
+            <div class="info">
+                <p><span>Genre:</span> {{details.genre}}</p>
+                <p><span>Performer:</span> {{details.performer}}</p>
+                <p><span>Day of performance:</span> {{details.day}}</p>
+                <p><span>Time of performance:</span> {{details.start_time}} to {{details.end_time}}</p>
+                <p><span>Ratings:</span> {{details.ratings}}/5</p>
+            </div>
         </div>
     </div>
     {% endfor %}
