@@ -4,109 +4,114 @@
 {% block title %} Dashboard {% endblock title %}
 {% block css %}
 :root {
-    --orange: #fd9940;
-    --darkorange: #dd7d25;
-    --platinum: #e5e5e5;
-    --black: #2b2d42;
-    --white: #fff;
-    --thumb: #edf2f4;
+--orange: #fd9940;
+--darkorange: #dd7d25;
+--platinum: #e5e5e5;
+--black: #2b2d42;
+--white: #fff;
+--thumb: #edf2f4;
 }
 body {
-    margin-top: 6%;
-    color: var(--black);
-    background: var(--platinum);
+margin-top: 6%;
+color: var(--black);
+background: var(--platinum);
 }
 .container {
-    max-width: 1400px;
-    padding: 0 15px;
-    margin: 0 auto;
+max-width: 1400px;
+padding: 0 15px;
+margin: 0 auto;
 }
 h2 {
-    font-size: 50px;
-    font-weight: 600;
-    margin: 40px 0 10px;
+font-size: 35px;
+margin: 70px 0 28px;
 }
 .form-control{
-    border: 2px solid black;
-    color: black !important;
+border: 2px solid black;
+color: black !important;
 }
 {% endblock css %}
 {% block body %}
-<div class="container">  
-    
+<div class="container">
+
     <!-- Search -->
-    <form class="d-flex" method="POST"  action="{% url 'search' %}"> {% csrf_token %}
+    <form class="d-flex" method="POST" action="{% url 'search' %}"> {% csrf_token %}
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 
-    <h2 class="rec-title">Recommended for you</h2>
-    <ul class="cards">
+    <!-- Recommendation -->
+    <div class="recommendation">
+        <h2 class="rec-title">Recommended for you</h2>
+        <ul class="cards">
 
-        {% for restu in resturants %}
-        <li class="card">
-            <div>
-                <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
-                <h3 class="card-title">{{restu.rest_name}}</h3>
-                <div class="card-content">
-                    <p>{{restu.location}}</p>
-                    <p>Genre: {{restu.genre}}</p>
-                    <p>Performance: {{restu.day}}</p>
-                    <p>Rating: {{restu.ratings}} / 5</p>
+            {% for restu in resturants %}
+            <li class="card">
+                <div>
+                    <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
+                    <h3 class="card-title">{{restu.rest_name}}</h3>
+                    <div class="card-content">
+                        <p>{{restu.location}}</p>
+                        <p>Genre: {{restu.genre}}</p>
+                        <p>Performance: {{restu.day}}</p>
+                        <p>Rating: {{restu.ratings}} / 5</p>
+                    </div>
                 </div>
-            </div>
-            <div class="card-link-wrapper">
-                <a href="{% url 'restaurant' restu.pk %}" class="card-link">Learn More</a>
-            </div>
-        </li>
-        {% endfor %}
-     
-    </ul>
-</div>
-<div class="container">    
-    <h2 class="rec-title">Pop</h2>
-    <ul class="cards">
+                <div class="card-link-wrapper">
+                    <a href="{% url 'restaurant' restu.pk %}" class="card-link">Learn More</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 
-        {% for pop in pops %}
-        <li class="card">
-            <div>
-                <img src="{{MEDIA_ROOT}}{{pop.rest_image.url}}" class="card-img-top" alt="...">
-                <h3 class="card-title">{{pop.rest_name}}</h3>
-                <div class="card-content">
-                    <p>{{pop.location}}</p>
-                    <p>Performance: {{pop.day}}</p>
-                    <p>Rating: {{pop.ratings}} / 5</p>
-                </div>
-            </div>
-            <div class="card-link-wrapper">
-                <a href="{% url 'restaurant' pop.pk %}" class="card-link">Learn More</a>
-            </div>
-        </li>
-        {% endfor %}
-     
-    </ul>
-</div>
-<div class="container">    
-    <h2 class="rec-title">Instrumental</h2>
-    <ul class="cards">
+    <!-- Filter Pop -->
+    <div class="pop">
+        <h2 class="rec-title">Pop</h2>
+        <ul class="cards">
 
-        {% for restu in resturants %}
-        <li class="card">
-            <div>
-                <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
-                <h3 class="card-title">{{restu.rest_name}}</h3>
-                <div class="card-content">
-                    <p>{{restu.location}}</p>
-                    <p>Performance: {{restu.day}}</p>
-                    <p>Rating: {{restu.ratings}} / 5</p>
+            {% for pop in pops %}
+            <li class="card">
+                <div>
+                    <img src="{{MEDIA_ROOT}}{{pop.rest_image.url}}" class="card-img-top" alt="...">
+                    <h3 class="card-title">{{pop.rest_name}}</h3>
+                    <div class="card-content">
+                        <p>{{pop.location}}</p>
+                        <p>Performance: {{pop.day}}</p>
+                        <p>Rating: {{pop.ratings}} / 5</p>
+                    </div>
                 </div>
-            </div>
-            <div class="card-link-wrapper">
-                <a href="{% url 'restaurant' restu.pk %}" class="card-link">Learn More</a>
-            </div>
-        </li>
-        {% endfor %}
-     
-    </ul>
+                <div class="card-link-wrapper">
+                    <a href="{% url 'restaurant' pop.pk %}" class="card-link">Learn More</a>
+                </div>
+            </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+    <!-- Instrumental -->
+    <div class="instrumental">
+        <h2 class="rec-title">Instrumental</h2>
+        <ul class="cards">
+
+            {% for instru in instrumental %}
+            <li class="card">
+                <div>
+                    <img src="{{MEDIA_ROOT}}{{instru.rest_image.url}}" class="card-img-top" alt="...">
+                    <h3 class="card-title">{{instru.rest_name}}</h3>
+                    <div class="card-content">
+                        <p>{{instru.location}}</p>
+                        <p>Performance: {{instru.day}}</p>
+                        <p>Rating: {{instru.ratings}} / 5</p>
+                    </div>
+                </div>
+                <div class="card-link-wrapper">
+                    <a href="{% url 'restaurant' instru.pk %}" class="card-link">Learn More</a>
+                </div>
+            </li>
+            {% endfor %}
+
+        </ul>
+    </div>
 </div>
 {% endblock body %}
