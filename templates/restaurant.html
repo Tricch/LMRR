@@ -33,6 +33,7 @@ body {
     display: flex;
     margin: 5% auto;
 }
+
 .rest-img{
     max-width: 500px;
     height: 100%;
@@ -51,30 +52,26 @@ h2 {
     margin-top: 80px;
     gap: 40px;
 }
-.info{
-    line-height: normal;
-    margin-top: 35px;
-}
-.info span{
-    font-weight: 600;
-}
+
 {% endblock css %}
 
 {% block body %}
     <!-- Restaurant Details -->
     {% for details in one_restu %}
     <div class="container rest-container">
-        <img src="{{MEDIA_ROOT}}{{details.rest_image.url}}" alt="..." class="rest-img">
+        <div class="container-img">
+            <img src="{{MEDIA_ROOT}}{{details.rest_image.url}}" alt="..." class="rest-img">
+        </div>
         <div class="rest-content">
             <h2>{{details.rest_name}}</h2>
             <p>{{details.location}}</p>
 
-            <div class="info">
+            <div class="rest-info">
                 <p><span>Genre:</span> {{details.genre}}</p>
                 <p><span>Performer:</span> {{details.performer}}</p>
                 <p><span>Day of performance:</span> {{details.day}}</p>
                 <p><span>Time of performance:</span> {{details.start_time}} to {{details.end_time}}</p>
-                <p><span>Ratings:</span> {{details.ratings}}/5</p>
+                <p><span>Ratings:</span> {{details.ratings}} / 5</p>
             </div>
         </div>
     </div>

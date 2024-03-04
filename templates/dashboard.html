@@ -4,12 +4,12 @@
 {% block title %} Dashboard {% endblock title %}
 {% block css %}
 :root {
---orange: #fd9940;
---darkorange: #dd7d25;
---platinum: #e5e5e5;
---black: #2b2d42;
---white: #fff;
---thumb: #edf2f4;
+    --orange: #fd9940;
+    --darkorange: #dd7d25;
+    --platinum: #e5e5e5;
+    --black: #2b2d42;
+    --white: #fff;
+    --thumb: #edf2f4;
 }
 body {
     margin-top: 6%;
@@ -24,6 +24,12 @@ body {
 h2 {
     font-size: 35px;
     margin: 70px 0 28px;
+}
+.card-content span{
+    font-weight: bold;
+}
+.info p{
+    margin: 0;
 }
 .form-control{
     border: 2px solid black;
@@ -51,9 +57,11 @@ h2 {
                     <h3 class="card-title">{{restu.rest_name}}</h3>
                     <div class="card-content">
                         <p>{{restu.location}}</p>
-                        <p><span>Genre:</span> {{restu.genre}}</p>
-                        <p>Performance: {{restu.day}}</p>
-                        <p>Rating: {{restu.ratings}} / 5</p>
+                        <div class="info">
+                            <p><span>Genre:</span> {{restu.genre}}</p>
+                            <p><span>Performance:</span> {{restu.day}}</p>
+                            <p><span>Rating:</span> {{restu.ratings}} / 5</p>
+                        </div>
                     </div>
                 </div>
                 <div class="card-link-wrapper">
@@ -76,8 +84,10 @@ h2 {
                     <h3 class="card-title">{{pop.rest_name}}</h3>
                     <div class="card-content">
                         <p>{{pop.location}}</p>
-                        <p>Performance: {{pop.day}}</p>
-                        <p>Rating: {{pop.ratings}} / 5</p>
+                        <div class="info">
+                            <p><span>Performance</span> {{pop.day}}</p>
+                            <p><span>Rating:</span> {{pop.ratings}} / 5</p>
+                        </div>
                     </div>
                 </div>
                 <div class="card-link-wrapper">
@@ -100,8 +110,10 @@ h2 {
                     <h3 class="card-title">{{instru.rest_name}}</h3>
                     <div class="card-content">
                         <p>{{instru.location}}</p>
-                        <p>Performance: {{instru.day}}</p>
-                        <p>Rating: {{instru.ratings}} / 5</p>
+                        <div class="info">
+                            <p><span>Performance</span> {{instru.day}}</p>
+                            <p><span>Rating:</span> {{instru.ratings}} / 5</p>
+                        </div>
                     </div>
                 </div>
                 <div class="card-link-wrapper">

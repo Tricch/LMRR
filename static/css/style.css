@@ -243,11 +243,21 @@ body {
 
 .card .card-title {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 22px;
+  margin-bottom: 0;
 }
 
 .card .card-content {
   max-width: 85%;
+}
+
+.rest-info{
+  line-height: 15px;
+  margin-top: 35px;
+}
+
+.rest-info span{
+  font-weight: 600;
 }
 
 .card .card-link-wrapper {
