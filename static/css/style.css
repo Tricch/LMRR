@@ -236,7 +236,7 @@ body {
 }
 
 .card .card-title {
-  font: weight 550px;
+  font-weight: 600;
   font-size: 30px;
 }
 
@@ -253,8 +253,8 @@ body {
   text-decoration: none;
   color: white;
   background: var(--orange);
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 4px 6px;
+  border-radius: 7px;
   transition: background 0.2s;
 }
 
