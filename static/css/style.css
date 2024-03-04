@@ -202,6 +202,7 @@ body {
 .rec-title{
   border-left: 6px solid orange;
   padding-left: 10px;
+  margin-bottom: 28px;
 }
 
 .cards {
@@ -380,4 +381,11 @@ body {
 }
 .review-block-description{
 	font-size:13px;
+}
+
+
+/* Search */
+.btn-outline-success{
+  border: 2px solid;
+  font-weight: 600;
 }

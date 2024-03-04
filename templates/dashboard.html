@@ -12,23 +12,22 @@
 --thumb: #edf2f4;
 }
 body {
-margin-top: 6%;
-color: var(--black);
-background: var(--platinum);
+    margin-top: 6%;
+    color: var(--black);
+    background: var(--platinum);
 }
 .container {
-max-width: 1400px;
-padding: 0 15px;
-margin: 0 auto;
+    max-width: 1400px;
+    padding: 0 15px;
+    margin: 0 auto;
 }
 h2 {
-font-size: 45px;
-font-weight: 550;
-margin: 70px 0 28px;
+    font-size: 35px;
+    margin: 70px 0 28px;
 }
 .form-control{
-border: 2px solid black;
-color: black !important;
+    border: 2px solid black;
+    color: black !important;
 }
 {% endblock css %}
 {% block body %}
@@ -37,7 +36,7 @@ color: black !important;
     <!-- Search -->
     <form class="d-flex" method="POST" action="{% url 'search' %}"> {% csrf_token %}
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success fw-bold" type="submit">Search</button>
     </form>
 
     <!-- Recommendation -->
@@ -52,7 +51,7 @@ color: black !important;
                     <h3 class="card-title">{{restu.rest_name}}</h3>
                     <div class="card-content">
                         <p>{{restu.location}}</p>
-                        <p>Genre: {{restu.genre}}</p>
+                        <p><span>Genre:</span> {{restu.genre}}</p>
                         <p>Performance: {{restu.day}}</p>
                         <p>Rating: {{restu.ratings}} / 5</p>
                     </div>
@@ -86,7 +85,6 @@ color: black !important;
                 </div>
             </li>
             {% endfor %}
-
         </ul>
     </div>
 
@@ -111,7 +109,6 @@ color: black !important;
                 </div>
             </li>
             {% endfor %}
-
         </ul>
     </div>
 </div>
