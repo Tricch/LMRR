@@ -200,7 +200,7 @@ body {
 
 /* Cards */
 .rec-title{
-  border-left: 6px solid orange;
+  border-left: 8px solid orange;
   padding-left: 10px;
 }
 
@@ -241,7 +241,8 @@ body {
 }
 
 .card .card-title {
-  font-size: 20px;
+  font-weight: 600;
+  font-size: 30px;
 }
 
 .card .card-content {
@@ -257,8 +258,8 @@ body {
   text-decoration: none;
   color: white;
   background: var(--orange);
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 4px 6px;
+  border-radius: 7px;
   transition: background 0.2s;
 }
 
