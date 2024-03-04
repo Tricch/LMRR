@@ -196,7 +196,7 @@ body {
 
 /* Cards */
 .rec-title{
-  border-left: 6px solid orange;
+  border-left: 8px solid orange;
   padding-left: 10px;
 }
 
@@ -236,7 +236,7 @@ body {
 }
 
 .card .card-title {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .card .card-content {
