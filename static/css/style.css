@@ -199,7 +199,7 @@ body {
 
 
 /* Cards */
-.rec-title{
+.rec-title {
   border-left: 6px solid orange;
   padding-left: 10px;
   margin-bottom: 28px;
@@ -251,12 +251,12 @@ body {
   max-width: 85%;
 }
 
-.rest-info{
+.rest-info {
   line-height: 15px;
   margin-top: 35px;
 }
 
-.rest-info span{
+.rest-info span {
   font-weight: 600;
 }
 
@@ -296,7 +296,7 @@ body {
 }
 
 /* Ratings */
-.container-rating{
+.container-rating {
   padding: 25px;
   height: 100%;
   background-color: #FAFAFA;
@@ -320,11 +320,11 @@ body {
 .side {
   float: left;
   width: 15%;
-  margin-top:10px;
+  margin-top: 10px;
 }
 
 .middle {
-  margin-top:10px;
+  margin-top: 10px;
   float: left;
   width: 70%;
 }
@@ -350,52 +350,90 @@ body {
 }
 
 /* Individual bars */
-.bar-5 {width: 60%; height: 18px; background-color: #04AA6D;}
-.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
-.bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
-.bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
-.bar-1 {width: 15%; height: 18px; background-color: #f44336;}
+.bar-5 {
+  width: 60%;
+  height: 18px;
+  background-color: #04AA6D;
+}
+
+.bar-4 {
+  width: 30%;
+  height: 18px;
+  background-color: #2196F3;
+}
+
+.bar-3 {
+  width: 10%;
+  height: 18px;
+  background-color: #00bcd4;
+}
+
+.bar-2 {
+  width: 4%;
+  height: 18px;
+  background-color: #ff9800;
+}
+
+.bar-1 {
+  width: 15%;
+  height: 18px;
+  background-color: #f44336;
+}
 
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
-  .side, .middle {
+
+  .side,
+  .middle {
     width: 100%;
   }
+
   .right {
     display: none;
   }
 }
 
-.review-block{
-	background-color:#FAFAFA;
-	border:1px solid #EFEFEF;
-	padding:25px;
-	border-radius:3px;
-	margin-bottom:15px;
+.review-block {
+  background-color: #FAFAFA;
+  border: 1px solid #EFEFEF;
+  padding: 25px;
+  border-radius: 3px;
+  margin-bottom: 15px;
 }
-.review-block-name{
-	font-size:12px;
-	margin:10px 0;
+
+.review-block-name {
+  font-size: 12px;
+  margin: 10px 0;
 }
-.review-block-date{
-	font-size:12px;
+
+.review-block-date {
+  font-size: 12px;
 }
-.review-block-rate{
-	font-size:13px;
-	margin-bottom:15px;
+
+.review-block-rate {
+  font-size: 13px;
+  margin-bottom: 15px;
 }
-.review-block-title{
-	font-size:15px;
-	font-weight:700;
-	margin-bottom:10px;
+
+.review-block-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
-.review-block-description{
-	font-size:13px;
+
+.review-block-description {
+  font-size: 13px;
 }
 
 
 /* Search */
-.btn-outline-success{
+.btn-outline-success {
   border: 2px solid;
   font-weight: 600;
 }
+
+
+
+
+
+
