@@ -17,12 +17,16 @@ body {
   font-family: var(--primary-font);
   background-image: var(--background);
   background-repeat: no-repeat;
+  margin-top: 10%;
 }
 
 /* ############################# Navbar ###############################*/
 .navbar {
   width: 100%;
   padding: 0.5rem 2rem;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 }
 
 .navbar-brand {
@@ -130,7 +134,7 @@ body {
 }
 
 /* ########################## Genre Selection ######################## */
-.genre {
+/* .genre {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
@@ -157,7 +161,7 @@ body {
   color: var(--dark-mode);
   font-weight: 600;
   background-color: var(--primary-color);
-}
+} */
 
 /* ######################### Main Section ######################### */
 .main-section {
@@ -225,8 +229,9 @@ body {
 }
 
 .card:hover {
-  color: var(--white);
-  background: var(--orange);
+  border: 4px solid var(--orange);
+  /* color: var(--white);
+  background: var(--orange); */
 }
 
 .card img {
@@ -257,7 +262,7 @@ body {
   transition: background 0.2s;
 }
 
-.card:hover .card-link {
+.card-link {
   background: var(--darkorange);
 }
 
@@ -279,27 +284,80 @@ body {
 }
 
 /* Ratings */
-.btn-grey{
-    background-color:#D8D8D8;
-	color:#FFF;
+.container-rating{
+  padding: 25px;
+  height: 100%;
+  background-color: #FAFAFA;
+  border-radius: 5px;
 }
-.rating-block{
-	background-color:#FAFAFA;
-	border:1px solid #EFEFEF;
-	padding:15px 15px 20px 15px;
-	border-radius:3px;
+
+.heading {
+  font-size: 25px;
+  margin-right: 25px;
 }
-.bold{
-	font-weight:700;
+
+.fa {
+  font-size: 25px;
 }
-.padding-bottom-7{
-	padding-bottom:7px;
+
+.checked {
+  color: orange;
+}
+
+/* Three column layout */
+.side {
+  float: left;
+  width: 15%;
+  margin-top:10px;
+}
+
+.middle {
+  margin-top:10px;
+  float: left;
+  width: 70%;
+}
+
+/* Place text to the right */
+.right {
+  text-align: left;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.bar-5 {width: 60%; height: 18px; background-color: #04AA6D;}
+.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
+.bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
+.bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
+.bar-1 {width: 15%; height: 18px; background-color: #f44336;}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+  .side, .middle {
+    width: 100%;
+  }
+  .right {
+    display: none;
+  }
 }
 
 .review-block{
 	background-color:#FAFAFA;
 	border:1px solid #EFEFEF;
-	padding:15px;
+	padding:25px;
 	border-radius:3px;
 	margin-bottom:15px;
 }

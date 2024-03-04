@@ -12,6 +12,7 @@
     --thumb: #edf2f4;
 }
 body {
+    margin-top: 6%;
     color: var(--black);
     background: var(--platinum);
 }
@@ -24,10 +25,20 @@ h2 {
     font-size: 32px;
     margin: 40px 0 20px;
 }
-
+.form-control{
+    border: 2px solid black;
+    color: black !important;
+}
 {% endblock css %}
 {% block body %}
-<div class="container">    
+<div class="container">  
+    
+    <!-- Search -->
+    <form class="d-flex" method="POST"  action="{% url 'search' %}"> {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
     <h2 class="rec-title">Recommended for you</h2>
     <ul class="cards">
 
@@ -44,7 +55,7 @@ h2 {
                 </div>
             </div>
             <div class="card-link-wrapper">
-                <a href="/restaurant" class="card-link">Learn More</a>
+                <a href="{% url 'restaurant' restu.pk %}" class="card-link">Learn More</a>
             </div>
         </li>
         {% endfor %}
@@ -52,22 +63,22 @@ h2 {
     </ul>
 </div>
 <div class="container">    
-    <h2 class="rec-title">Acoustic</h2>
+    <h2 class="rec-title">Pop</h2>
     <ul class="cards">
 
-        {% for restu in resturants %}
+        {% for pop in pops %}
         <li class="card">
             <div>
-                <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
-                <h3 class="card-title">{{restu.rest_name}}</h3>
+                <img src="{{MEDIA_ROOT}}{{pop.rest_image.url}}" class="card-img-top" alt="...">
+                <h3 class="card-title">{{pop.rest_name}}</h3>
                 <div class="card-content">
-                    <p>{{restu.location}}</p>
-                    <p>Performance: {{restu.day}}</p>
-                    <p>Rating: {{restu.ratings}} / 5</p>
+                    <p>{{pop.location}}</p>
+                    <p>Performance: {{pop.day}}</p>
+                    <p>Rating: {{pop.ratings}} / 5</p>
                 </div>
             </div>
             <div class="card-link-wrapper">
-                <a href="/restaurant" class="card-link">Learn More</a>
+                <a href="{% url 'restaurant' pop.pk %}" class="card-link">Learn More</a>
             </div>
         </li>
         {% endfor %}
@@ -90,7 +101,7 @@ h2 {
                 </div>
             </div>
             <div class="card-link-wrapper">
-                <a href="/restaurant" class="card-link">Learn More</a>
+                <a href="{% url 'restaurant' restu.pk %}" class="card-link">Learn More</a>
             </div>
         </li>
         {% endfor %}

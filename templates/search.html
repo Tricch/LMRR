@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Dashboard {% endblock title %}
+{% block css %}
+:root {
+    --orange: #fd9940;
+    --darkorange: #dd7d25;
+    --platinum: #e5e5e5;
+    --black: #2b2d42;
+    --white: #fff;
+    --thumb: #edf2f4;
+}
+body {
+    margin-top: 6%;
+    color: var(--black);
+    background: var(--platinum);
+}
+.container {
+    max-width: 1400px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+h2 {
+    font-size: 32px;
+    margin: 40px 0 20px;
+}
+.form-control{
+    border: 2px solid black;
+    color: black !important;
+}
+{% endblock css %}
+{% block body %}
+<div class="container">  
+    
+    <!-- Search -->
+    <form class="d-flex" method="GET"  action="{% url 'search' %}">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    <h2 class="rec-title">Recommended for you</h2>
+    <ul class="cards">
+
+        {% for search in searches %}
+        <li class="card">
+            <div>
+                <img src="{{MEDIA_ROOT}}{{search.rest_image.url}}" class="card-img-top" alt="...">
+                <h3 class="card-title">{{search.rest_name}}</h3>
+                <div class="card-content">
+                    <p>{{search.location}}</p>
+                    <p>Genre: {{search.genre}}</p>
+                    <p>Performance: {{search.day}}</p>
+                    <p>Rating: {{search.ratings}} / 5</p>
+                </div>
+            </div>
+            <div class="card-link-wrapper">
+                <a href="{% url 'restaurant' search.pk %}" class="card-link">Learn More</a>
+            </div>
+        </li>
+        {% endfor %}
+     
+    </ul>
+</div>
+
+{% endblock body %}
