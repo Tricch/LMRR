@@ -26,3 +26,4 @@ eyeicon.onclick = function () {
 
 
 // Ratings
+console.log("hello world")

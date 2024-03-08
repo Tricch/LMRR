@@ -38,7 +38,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        z-index: 2;
+        z-index: 99;
       " role="alert">
     <strong>Message:</strong> {{ message }}
     <button type="button" class="btn-close" style="padding: 0; position: unset; float: right" data-bs-dismiss="alert"
@@ -60,37 +60,33 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/profile">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-danger" href="/logout">Logout</a>
-          </li>
-          {% else %}
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-stream"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login">LOGIN</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signup">SIGNUP</a>
-              </li>
 
-              {% endif %}
-            </ul>
-          </div>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="/logout">Logout</a>
+            </li>
+          {% else %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#login">LOGIN</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signup">SIGNUP</a>
+            </li>
+
+          {% endif %}
+        </ul>
       </div>
+    </div>
   </nav>
   {% endblock navbar %}
 
@@ -105,6 +101,10 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="{% static 'js/script.js'%}"></script>
+  <script>
+    {% block js %}
+    {% endblock js %}
+  </script>
 </body>
 
 </html>

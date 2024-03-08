@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %} Dashboard {% endblock title %}
+{% block title %} Search {% endblock title %}
 {% block css %}
 :root {
     --orange: #fd9940;
@@ -29,6 +29,7 @@ h2 {
     border: 2px solid black;
     color: black !important;
 }
+
 {% endblock css %}
 {% block body %}
 <div class="container">  
@@ -39,27 +40,24 @@ h2 {
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 
-    <h2 class="rec-title">Recommended for you</h2>
     <ul class="cards">
-
         {% for search in searches %}
-        <li class="card">
-            <div>
-                <img src="{{MEDIA_ROOT}}{{search.rest_image.url}}" class="card-img-top" alt="...">
-                <h3 class="card-title">{{search.rest_name}}</h3>
-                <div class="card-content">
-                    <p>{{search.location}}</p>
-                    <p>Genre: {{search.genre}}</p>
-                    <p>Performance: {{search.day}}</p>
-                    <p>Rating: {{search.ratings}} / 5</p>
+            <li class="card mt-4">                
+                <div>
+                    <img src="{{MEDIA_ROOT}}{{search.rest_image.url}}" class="card-img-top" alt="...">
+                    <h3 class="card-title">{{search.rest_name}}</h3>
+                    <div class="card-content">
+                        <p>{{search.location}}</p>
+                        <p>Genre: {{search.genre}}</p>
+                        <p>Performance: {{search.day}}</p>
+                        <p>Rating: {{search.ratings}} / 5</p>
+                    </div>
                 </div>
-            </div>
-            <div class="card-link-wrapper">
-                <a href="{% url 'restaurant' search.pk %}" class="card-link">Learn More</a>
-            </div>
-        </li>
-        {% endfor %}
-     
+                <div class="card-link-wrapper">
+                    <a href="{% url 'restaurant' search.pk %}" class="card-link">Learn More</a>
+                </div>
+            </li>
+        {% endfor %}     
     </ul>
 </div>
 

@@ -5,222 +5,312 @@
 
 {% comment %} {% for restu in restaurants %}
 {% block title %} {{restu.rest_name}} {% endblock title %}
-{% endfor %}  {% endcomment %}
+{% endfor %} {% endcomment %}
 
 {% block css %}
 :root {
-    --orange: #fd9940;
-    --darkorange: #dd7d25;
-    --platinum: #e5e5e5;
-    --black: #2b2d42;
-    --white: #fff;
-    --thumb: #edf2f4;
+--orange: #fd9940;
+--darkorange: #dd7d25;
+--platinum: #e5e5e5;
+--black: #2b2d42;
+--white: #fff;
+--thumb: #edf2f4;
 }
 body {
-    color: var(--black);
-    background: var(--platinum);
+color: var(--black);
+background: var(--platinum);
 }
 .container {
-    max-width: 1400px;
-    padding: 0 15px;
-    margin: 0 auto;
+max-width: 1400px;
+padding: 0 15px;
+margin: 0 auto;
 }
 .divider{
-    margin: -12px 0 3rem 0;
+margin: -12px 0 3rem 0;
 }
 .rest-container{
-    padding-left: 100px;
-    display: flex;
-    margin: 5% auto;
+padding-left: 100px;
+display: flex;
+margin: 5% auto;
 }
 
 .rest-img{
-    max-width: 500px;
-    height: 100%;
-    border-radius: 10px;
+max-width: 500px;
+height: 100%;
+border-radius: 10px;
 }
 .rest-content{
-    padding: 15px 60px;
-    font-size: 20px;
+padding: 15px 60px;
+font-size: 20px;
 }
 h2 {
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: 1px;
+font-size: 32px;
+font-weight: 600;
+letter-spacing: 1px;
 }
+
+<!-- Rating -->
+.checked {
+    color: orange;
+}
+.my-btn{
+    background-color: inherit;
+    border: 0;
+}
+
 .rate-review{
-    margin-top: 80px;
-    gap: 40px;
+margin-top: 80px;
+gap: 40px;
 }
 
 {% endblock css %}
 
 {% block body %}
-    <!-- Restaurant Details -->
-    {% for details in one_restu %}
-    <div class="container rest-container">
-        <div class="container-img">
-            <img src="{{MEDIA_ROOT}}{{details.rest_image.url}}" alt="..." class="rest-img">
-        </div>
-        <div class="rest-content">
-            <h2>{{details.rest_name}}</h2>
-            <p>{{details.location}}</p>
+<!-- Restaurant Details -->
+{% for details in one_restu %}
+<div class="container rest-container">
+    <div class="container-img">
+        <img src="{{MEDIA_ROOT}}{{details.rest_image.url}}" alt="..." class="rest-img">
+    </div>
+    <div class="rest-content">
+        <h2>{{details.rest_name}}</h2>
+        <p>{{details.location}}</p>
 
-            <div class="rest-info">
-                <p><span>Genre:</span> {{details.genre}}</p>
-                <p><span>Performer:</span> {{details.performer}}</p>
-                <p><span>Day of performance:</span> {{details.day}}</p>
-                <p><span>Time of performance:</span> {{details.start_time}} to {{details.end_time}}</p>
-                <p><span>Ratings:</span> {{details.ratings}} / 5</p>
-            </div>
+        <div class="rest-info">
+            <p><span>Genre:</span> {{details.genre}}</p>
+            <p><span>Performer:</span> {{details.performer}}</p>
+            <p><span>Day of performance:</span> {{details.day}}</p>
+            <p><span>Time of performance:</span> {{details.start_time}} to {{details.end_time}}</p>
+            <p><span>Ratings:</span> {{details.ratings}} / 5</p>
         </div>
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
 
-
-    <!-- Recommendation -->
-    <div class="container">  
+<div class="row">
+    <div class="col text-center">
         
-        <hr class="divider">
-        <h2 class="rec-title">You may also like:</h2>
-        <ul class="cards">
-    
-            {% for restu in resturants %}
-            <li class="card">
-                <div>
-                    <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
-                    <h3 class="card-title">{{restu.rest_name}}</h3>
-                    <div class="card-content">
-                        <p>{{restu.location}}</p>
-                        <p>Genre: {{restu.genre}}</p>
-                        <p>Performance: {{restu.day}}</p>
-                        <p>Rating: {{restu.ratings}} / 5</p>
-                    </div>
-                </div>
-                <div class="card-link-wrapper">
-                    <a href="{% url 'restaurant' restu.pk %}" class="card-link">Learn More</a>
-                </div>
-            </li>
-            {% endfor %}
-         
-        </ul>
+        <img src="{{object.image.url}}" class="rounded" width="100%" alt="...">
+        <button class="btn btn-primary">Rate</button>
     </div>
+    <div class="col text-center">
+        <form class="rate-form" action="" method="post">
+            {% csrf_token %}
+            <button type="submit" class="fa fa-star my-btn checked" id="first"></button>
+            <button type="submit" class="fa fa-star my-btn checked" id="second"></button>
+            <button type="submit" class="fa fa-star my-btn checked" id="third"></button>
+            <button type="submit" class="fa fa-star my-btn" id="fourth"></button>
+            <button type="submit" class="fa fa-star my-btn" id="fifth"></button>
+        </form>
+    </div>
+    <div id="confirm-box"></div>
+</div>
 
-    <div class="container d-flex rate-review">  
-        <!-- Rating section -->
-        <div class="container-rating">  			
-            <span class="heading">User Rating</span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <p>4.1 average based on 254 reviews.</p>
-            <hr style="border:3px solid black">
 
-            <div class="row">
-                <div class="side">
-                    <div>5 star</div>
+
+<!-- Recommendation -->
+<div class="container">
+    <hr class="divider">
+    <h2 class="rec-title">You may also like:</h2>
+    <ul class="cards">
+
+        {% for restu in avg_ratings %}
+        <li class="card">
+            <div>
+                <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
+                <h3 class="card-title">{{restu.rest_name}}</h3>
+                <div class="card-content">
+                    <p>{{restu.location}}</p>
+                    <p>Genre: {{restu.genre}}</p>
+                    <p>Performance: {{restu.day}}</p>
+                    <p>Rating: {{restu.ratings}} / 5</p>
                 </div>
-                <div class="middle">
+            </div>
+            <div class="card-link-wrapper">
+                <a href="{% url 'restaurant' restu.pk %}" class="card-link">Learn More</a>
+            </div>
+        </li>
+        {% endfor %}
+
+    </ul>
+</div>
+
+{% comment %} <div class="container d-flex rate-review">
+    <!-- Rating section -->
+    <div class="container-rating">
+        <span class="heading">User Rating</span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <p>4.1 average based on 254 reviews.</p>
+        <hr style="border:3px solid black">
+
+        <div class="row">
+            <div class="side">
+                <div>5 star</div>
+            </div>
+            <div class="middle">
                 <div class="bar-container">
                     <div class="bar-5"></div>
                 </div>
+            </div>
+            <div class="side right">
+                <div>150</div>
+            </div>
+            <div class="side">
+                <div>4 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-4"></div>
                 </div>
-                <div class="side right">
-                    <div>150</div>
+            </div>
+            <div class="side right">
+                <div>63</div>
+            </div>
+            <div class="side">
+                <div>3 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-3"></div>
                 </div>
-                <div class="side">
-                    <div>4 star</div>
+            </div>
+            <div class="side right">
+                <div>15</div>
+            </div>
+            <div class="side">
+                <div>2 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-2"></div>
                 </div>
-                <div class="middle">
-                    <div class="bar-container">
-                        <div class="bar-4"></div>
+            </div>
+            <div class="side right">
+                <div>6</div>
+            </div>
+            <div class="side">
+                <div>1 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-1"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>20</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review section -->
+    <div class="container-review">
+        <div class="review-block">
+            <!-- Reviews -->
+            <div class="row">
+                <div class="col-sm-2">
+                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                    <div class="review-block-name"><a href="#">nktailor</a></div>
+                    <div class="review-block-date">January 29, 2016<br />1 day ago</div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="review-block-rate">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        </button>
                     </div>
+                    <div class="review-block-title">this was nice in buy</div>
+                    <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in
+                        buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this
+                        was nice in buy</div>
                 </div>
-                <div class="side right">
-                    <div>63</div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-2">
+                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                    <div class="review-block-name"><a href="#">nktailor</a></div>
+                    <div class="review-block-date">January 29, 2016<br />1 day ago</div>
                 </div>
-                <div class="side">
-                    <div>3 star</div>
-                </div>
-                <div class="middle">
-                    <div class="bar-container">
-                        <div class="bar-3"></div>
+                <div class="col-sm-10">
+                    <div class="review-block-rate">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        </button>
                     </div>
-                </div>
-                <div class="side right">
-                    <div>15</div>
-                </div>
-                <div class="side">
-                    <div>2 star</div>
-                </div>
-                <div class="middle">
-                    <div class="bar-container">
-                        <div class="bar-2"></div>
-                    </div>
-                </div>
-                <div class="side right">
-                    <div>6</div>
-                </div>  
-                <div class="side">
-                    <div>1 star</div>
-                </div>
-                <div class="middle">
-                    <div class="bar-container">
-                        <div class="bar-1"></div>
-                    </div>
-                </div>
-                <div class="side right">
-                    <div>20</div>
+                    <div class="review-block-title">this was nice in buy</div>
+                    <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in
+                        buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this
+                        was nice in buy</div>
                 </div>
             </div>
         </div>
-		
-        <!-- Review section -->
-        <div class="container-review">	
-            <div class="review-block">
-                <!-- Reviews -->
-                <div class="row">
-                    <div class="col-sm-2">
-                                <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                                <div class="review-block-name"><a href="#">nktailor</a></div>
-                                <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
-                    </div>
-                    <div class="col-sm-10">
-                                <div class="review-block-rate">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    </button>
-                                </div>
-                                <div class="review-block-title">this was nice in buy</div>
-                                <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                    </div>
-                </div>
-                <hr/>
-                <div class="row">
-                    <div class="col-sm-2">
-                                <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                                <div class="review-block-name"><a href="#">nktailor</a></div>
-                                <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
-                    </div>
-                    <div class="col-sm-10">
-                                <div class="review-block-rate">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    </button>
-                                </div>
-                                <div class="review-block-title">this was nice in buy</div>
-                                <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                    </div>
-                </div>
-            </div>
-        </div>		
     </div>
+</div> {% endcomment %}
+
+{% block js %}
+    const one = document.getElementById('first')
+    const two = document.getElementById('second')
+    const three = document.getElementById('third')
+    const four = document.getElementById('fourth')
+    const five = document.getElementById('fifth')
+
+    const form = document.querySelector('.rate-form')
+    const confirmBox = document.getElementById('confirm-box')
+    const csrf = document.getElementsByName('csrfmiddlewaretoken')
+    
+    const handleStarSelect = (size) => {
+        const children = form.children
+        for (let i=0; i<children.length; i++){
+            if(i <= size){
+                children[i].classList.add('checked')
+            } else{
+                children[i].classList.remove('checked')
+            }
+        }
+    }
+
+    const handleSelect = (selection) => {
+    switch (selection) {
+        case 'first': {
+            handleStarSelect(1)
+            return
+        }
+        case 'second': {
+            handleStarSelect(2)
+            return
+        }
+        case 'third': {
+            handleStarSelect(3)
+            return
+        }
+        case 'fourth': {
+            handleStarSelect(4)
+            return
+        }
+        case 'fifth': {
+            handleStarSelect(5)
+            return
+        }
+    }
+    }
+    if(one){
+        const arr = [one, two, three, four, five]
+        arr.forEach(item => item.addEventListener('mouseover', (event) => {
+            handleSelect(event.target.id)
+        }))
+    }
+    
+{% endblock js %}
+
 {% endblock body%}
+

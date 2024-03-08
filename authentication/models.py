@@ -1,4 +1,7 @@
+from datetime import datetime
 from django.db import models
+from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 genre_choices = (
@@ -38,3 +41,12 @@ class Restaurant(models.Model):
     rest_image = models.ImageField(upload_to='restaurant', default="")
     def __str__(self):
         return self.rest_name
+    
+class Rating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='restaurant') 
+    rating = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    rated_date=models.DateTimeField(default=datetime.now)
+    def __str__(self):
+        return str(self.pk)

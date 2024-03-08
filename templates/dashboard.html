@@ -35,6 +35,7 @@ h2 {
     border: 2px solid black;
     color: black !important;
 }
+
 {% endblock css %}
 {% block body %}
 <div class="container">
@@ -50,7 +51,7 @@ h2 {
         <h2 class="rec-title">Recommended for you</h2>
         <ul class="cards">
 
-            {% for restu in resturants %}
+            {% for restu in avg_ratings %}
             <li class="card">
                 <div>
                     <img src="{{MEDIA_ROOT}}{{restu.rest_image.url}}" class="card-img-top" alt="...">
@@ -73,7 +74,7 @@ h2 {
     </div>
 
   
-      <!-- Acoustic -->
+    <!-- Acoustic -->
     <div class="acoustic">
         <h2 class="rec-title">Acoustic</h2>
         <ul class="cards">
