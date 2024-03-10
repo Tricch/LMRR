@@ -7,9 +7,11 @@ navBar.forEach(function (a) {
   })
 })
 
+
 document.querySelector(".closeMe").addEventListener("click", () => {
   document.querySelector("#login").classList.remove("openmodal");
 });
+
 
 // Show Password
 let eyeicon = document.getElementById("eyeicon");
@@ -25,5 +27,5 @@ eyeicon.onclick = function () {
 };
 
 
-// Ratings
-console.log("hello world")
+
+

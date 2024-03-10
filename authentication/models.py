@@ -23,30 +23,30 @@ day_choices = (
     ("Saturday","Saturday")
 )
 
+    
 
 class Restaurant(models.Model):
     rest_name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     genre = models.CharField(max_length=100, choices=genre_choices)
     performer = models.CharField(max_length=100, default="")
-    ratings = models.CharField(max_length=100, default="")
-    # day = models.CharField(max_length=100, default="")
-    # time = models.CharField(max_length=100, default="")
-
-    day = models.CharField(max_length=100, choices=day_choices)
-    
+    ratings = models.IntegerField(blank=True, null=True)
+    day = models.CharField(max_length=100, choices=day_choices)    
     start_time = models.TimeField(null=True,blank=True)
     end_time = models.TimeField(null=True,blank=True)
-
     rest_image = models.ImageField(upload_to='restaurant', default="")
     def __str__(self):
         return self.rest_name
     
 class Rating(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
     restaurant = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='restaurant') 
     rating = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    review_desp = models.CharField(max_length=100, default=None)
     rated_date=models.DateTimeField(default=datetime.now)
     def __str__(self):
         return str(self.pk)
+    
+    @property
+    def avg_rating(self):
+        return (self.rating/len(self.rating))

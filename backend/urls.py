@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from authentication.views import home, login, logout, signup, dashboard, profile, restaurant,search
+from authentication.views import home, login, logout, signup, dashboard, profile, restaurant, search, handle_rating
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -25,8 +25,9 @@ urlpatterns = [
     path('', home, name="home"),
     path('dashboard', dashboard,  name='dashboard'),
     path('restaurant/<int:pk>', restaurant,  name='restaurant'),
-    path('profile', profile,  name='profile'),
+    path('handle_rating/<int:pk>', handle_rating,  name='handleRatings'),
     path('signup', signup,  name='signup'),
+    path('profile', profile,  name='profile'),
     path('logout', logout,  name='logout'),
     path('login', login,  name='login'),
     path('search',search,name="search"),

@@ -20,14 +20,16 @@
 
   <style>
     {% block css %}
-
+      
     {% endblock css %}
   </style>
 </head>
 
 <body>
-  {% block alert %} {% for message in messages %}
+  {% block alert %} 
+  {% for message in messages %}
   <div class="alert alert-{{ message.tags }} alert-dismissible fade show" style="
+        color: black;
         margin: 8px 15px;
         min-width: 35%;
         float: right;
@@ -45,7 +47,8 @@
       aria-label="Close"></button>
     <span aria-hidden="true"></span>
   </div>
-  {% endfor %} {% endblock alert %}
+  {% endfor %}
+ {% endblock alert %}
 
 
   {% block navbar %}
@@ -100,11 +103,8 @@
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="{% static 'js/script.js'%}"></script>
-  <script>
-    {% block js %}
-    {% endblock js %}
-  </script>
+  <script src="{% static 'js/script.js' %}"></script>
+
 </body>
 
 </html>

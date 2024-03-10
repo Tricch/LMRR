@@ -25,9 +25,7 @@ max-width: 1400px;
 padding: 0 15px;
 margin: 0 auto;
 }
-.divider{
-margin: -12px 0 3rem 0;
-}
+
 .rest-container{
 padding-left: 100px;
 display: flex;
@@ -63,6 +61,54 @@ margin-top: 80px;
 gap: 40px;
 }
 
+.rating {
+    margin-top: 40px;
+    border: none;
+    float: left;
+
+}
+
+.rating>label {
+    color: #9C9C9C;
+    font-size: 7px;
+    float: right;
+}
+
+
+.rating>label:before {
+    margin: 5px;
+    font-size: 2em;
+    font-family: FontAwesome;
+    content: "\f005";
+    display: inline-block;
+}
+
+.rating>input {
+    display: none;
+}
+
+.rating>input:checked~label,
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    color: #F79426;
+}
+
+.rating>input:checked+label:hover,
+.rating>input:checked~label:hover,
+.rating>label:hover~input:checked~label,
+.rating>input:checked~label:hover~label {
+    color: #FECE31;
+}
+
+#star {
+    font-size: 10px;
+    color: grey;
+}
+
+#check-star {
+    font-size: 10px;
+}
+
 {% endblock css %}
 
 {% block body %}
@@ -85,26 +131,44 @@ gap: 40px;
         </div>
     </div>
 </div>
-{% endfor %}
 
-<div class="row">
-    <div class="col text-center">
+
+
+<!-- Review Form -->
+<div class="container">
+    <form method="POST" action="{% url 'handleRatings' details.pk %}"> {% csrf_token %}
         
-        <img src="{{object.image.url}}" class="rounded" width="100%" alt="...">
-        <button class="btn btn-primary">Rate</button>
-    </div>
-    <div class="col text-center">
-        <form class="rate-form" action="" method="post">
+    <div class="col-md-6">
+        <p style="font-weight:600;">Write a review</p>
+        <!-- <form method="POST" action="{% url 'handleRatings' details.pk %}"> {% csrf_token %} -->
             {% csrf_token %}
-            <button type="submit" class="fa fa-star my-btn checked" id="first"></button>
-            <button type="submit" class="fa fa-star my-btn checked" id="second"></button>
-            <button type="submit" class="fa fa-star my-btn checked" id="third"></button>
-            <button type="submit" class="fa fa-star my-btn" id="fourth"></button>
-            <button type="submit" class="fa fa-star my-btn" id="fifth"></button>
-        </form>
+            <div class="form-group required">
+                <div class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" />
+                    <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+                    <input type="radio" id="star4" name="rating" value="4" />
+                    <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+                    <input type="radio" id="star3" name="rating" value="3" />
+                    <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+                    <input type="radio" id="star2" name="rating" value="2" />
+                    <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+                    <input type="radio" id="star1" name="rating" value="1" />
+                    <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
+                </div>
+            </div>
+        <!-- </form> -->
     </div>
-    <div id="confirm-box"></div>
+    <textarea name="restu_review" placeholder="Write a review..." rows="6" cols="50" id="review-text"
+        required></textarea>
+    <br>
+
+    <div class="row">
+        <div class="col-md-4">
+            <input type="submit" class="btn btn-primary mt-2" value="Post">
+        </div>
+</form>
 </div>
+{% endfor %}
 
 
 
@@ -256,61 +320,6 @@ gap: 40px;
         </div>
     </div>
 </div> {% endcomment %}
-
-{% block js %}
-    const one = document.getElementById('first')
-    const two = document.getElementById('second')
-    const three = document.getElementById('third')
-    const four = document.getElementById('fourth')
-    const five = document.getElementById('fifth')
-
-    const form = document.querySelector('.rate-form')
-    const confirmBox = document.getElementById('confirm-box')
-    const csrf = document.getElementsByName('csrfmiddlewaretoken')
-    
-    const handleStarSelect = (size) => {
-        const children = form.children
-        for (let i=0; i<children.length; i++){
-            if(i <= size){
-                children[i].classList.add('checked')
-            } else{
-                children[i].classList.remove('checked')
-            }
-        }
-    }
-
-    const handleSelect = (selection) => {
-    switch (selection) {
-        case 'first': {
-            handleStarSelect(1)
-            return
-        }
-        case 'second': {
-            handleStarSelect(2)
-            return
-        }
-        case 'third': {
-            handleStarSelect(3)
-            return
-        }
-        case 'fourth': {
-            handleStarSelect(4)
-            return
-        }
-        case 'fifth': {
-            handleStarSelect(5)
-            return
-        }
-    }
-    }
-    if(one){
-        const arr = [one, two, three, four, five]
-        arr.forEach(item => item.addEventListener('mouseover', (event) => {
-            handleSelect(event.target.id)
-        }))
-    }
-    
-{% endblock js %}
 
 {% endblock body%}
 
