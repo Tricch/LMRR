@@ -49,66 +49,68 @@ letter-spacing: 1px;
 
 <!-- Rating -->
 .checked {
-    color: orange;
+color: orange;
 }
 .my-btn{
-    background-color: inherit;
-    border: 0;
-}
-
-.rate-review{
-margin-top: 80px;
-gap: 40px;
+background-color: inherit;
+border: 0;
 }
 
 .rating {
-    margin-top: 40px;
-    border: none;
-    float: left;
-
+margin-top: 40px;
+border: none;
+float: left;
 }
 
 .rating>label {
-    color: #9C9C9C;
-    font-size: 7px;
-    float: right;
+color: #9C9C9C;
+font-size: 10px;
+float: right;
 }
 
 
 .rating>label:before {
-    margin: 5px;
-    font-size: 2em;
-    font-family: FontAwesome;
-    content: "\f005";
-    display: inline-block;
+margin: 5px;
+font-size: 2em;
+font-family: FontAwesome;
+content: "\f005";
+display: inline-block;
 }
 
 .rating>input {
-    display: none;
+display: none;
 }
 
 .rating>input:checked~label,
 .rating:not(:checked)>label:hover,
 .rating:not(:checked)>label:hover~label {
-    color: #F79426;
+color: #F79426;
 }
 
 .rating>input:checked+label:hover,
 .rating>input:checked~label:hover,
 .rating>label:hover~input:checked~label,
 .rating>input:checked~label:hover~label {
-    color: #FECE31;
+color: #FECE31;
 }
 
 #star {
-    font-size: 10px;
-    color: grey;
+font-size: 10px;
+color: grey;
 }
 
 #check-star {
-    font-size: 10px;
+font-size: 10px;
 }
 
+#review-text{
+padding: 8px;
+margin-left: 30px;
+}
+
+.container-review{
+width: 100%;
+}
 {% endblock css %}
 
 {% block body %}
@@ -127,20 +129,18 @@ gap: 40px;
             <p><span>Performer:</span> {{details.performer}}</p>
             <p><span>Day of performance:</span> {{details.day}}</p>
             <p><span>Time of performance:</span> {{details.start_time}} to {{details.end_time}}</p>
-            <p><span>Ratings:</span> {{details.ratings}} / 5</p>
+            <!-- <p><span>Ratings:</span> {{details.ratings}} / 5</p> -->
         </div>
     </div>
 </div>
 
 
-
 <!-- Review Form -->
-<div class="container">
-    <form method="POST" action="{% url 'handleRatings' details.pk %}"> {% csrf_token %}
-        
-    <div class="col-md-6">
-        <p style="font-weight:600;">Write a review</p>
-        <!-- <form method="POST" action="{% url 'handleRatings' details.pk %}"> {% csrf_token %} -->
+<div class="container mb-5">
+    <form method="POST" action="{% url 'handleRatings' details.pk %}">
+        {% csrf_token %}
+        <div class="col-md-6">
+            <h4 class="rec-title fs-3 fw-bold">Write a review</h4>
             {% csrf_token %}
             <div class="form-group required">
                 <div class="rating">
@@ -156,20 +156,19 @@ gap: 40px;
                     <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
                 </div>
             </div>
-        <!-- </form> -->
-    </div>
-    <textarea name="restu_review" placeholder="Write a review..." rows="6" cols="50" id="review-text"
-        required></textarea>
-    <br>
-
-    <div class="row">
-        <div class="col-md-4">
-            <input type="submit" class="btn btn-primary mt-2" value="Post">
         </div>
-</form>
+        <textarea name="restu_review" placeholder="Write a review..." rows="6" cols="100" id="review-text"
+            required></textarea>
+        <br>
+
+        <div class="row">
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary mt-2" value="Post">
+            </div>
+        </div>
+    </form>
 </div>
 {% endfor %}
-
 
 
 <!-- Recommendation -->
@@ -177,7 +176,6 @@ gap: 40px;
     <hr class="divider">
     <h2 class="rec-title">You may also like:</h2>
     <ul class="cards">
-
         {% for restu in avg_ratings %}
         <li class="card">
             <div>
@@ -195,131 +193,56 @@ gap: 40px;
             </div>
         </li>
         {% endfor %}
-
     </ul>
 </div>
 
-{% comment %} <div class="container d-flex rate-review">
-    <!-- Rating section -->
-    <div class="container-rating">
-        <span class="heading">User Rating</span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <p>4.1 average based on 254 reviews.</p>
-        <hr style="border:3px solid black">
 
-        <div class="row">
-            <div class="side">
-                <div>5 star</div>
-            </div>
-            <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-5"></div>
-                </div>
-            </div>
-            <div class="side right">
-                <div>150</div>
-            </div>
-            <div class="side">
-                <div>4 star</div>
-            </div>
-            <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-4"></div>
-                </div>
-            </div>
-            <div class="side right">
-                <div>63</div>
-            </div>
-            <div class="side">
-                <div>3 star</div>
-            </div>
-            <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-3"></div>
-                </div>
-            </div>
-            <div class="side right">
-                <div>15</div>
-            </div>
-            <div class="side">
-                <div>2 star</div>
-            </div>
-            <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-2"></div>
-                </div>
-            </div>
-            <div class="side right">
-                <div>6</div>
-            </div>
-            <div class="side">
-                <div>1 star</div>
-            </div>
-            <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-1"></div>
-                </div>
-            </div>
-            <div class="side right">
-                <div>20</div>
-            </div>
-        </div>
-    </div>
-
+<!-- Review Display -->
+<div class="container mt-5">
+    <hr class="divider">
+    <h3 class="rec-title">All rating and reviews</h3>
+</div>
+{% for details in review %}
+<div class="container d-flex rate-review">
     <!-- Review section -->
     <div class="container-review">
         <div class="review-block">
             <!-- Reviews -->
             <div class="row">
                 <div class="col-sm-2">
-                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                    <div class="review-block-name"><a href="#">nktailor</a></div>
-                    <div class="review-block-date">January 29, 2016<br />1 day ago</div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="img-rounded">
+                    <div class="review-block-name"><a href="#">{{ details.user }}</a></div>
+                    <div class="review-block-date">{{ details.rated_date }}</div>
                 </div>
                 <div class="col-sm-10">
-                    <div class="review-block-rate">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        </button>
-                    </div>
-                    <div class="review-block-title">this was nice in buy</div>
-                    <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in
-                        buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this
-                        was nice in buy</div>
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-sm-2">
-                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                    <div class="review-block-name"><a href="#">nktailor</a></div>
-                    <div class="review-block-date">January 29, 2016<br />1 day ago</div>
-                </div>
-                <div class="col-sm-10">
-                    <div class="review-block-rate">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        </button>
-                    </div>
-                    <div class="review-block-title">this was nice in buy</div>
-                    <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in
-                        buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this
-                        was nice in buy</div>
+                    {% if details.rating > 0 %}
+                    <i class="fa fa-star fs-6 {% if details.rating  < 1 %} no-checked {% else %} checked {% endif %} "
+                        id="check-star"></i>
+                    <i class="fa fa-star fs-6 {% if details.rating  < 2 %} no-checked {% else %} checked {% endif %} "
+                        id="check-star"></i>
+                    <i class="fa fa-star fs-6 {% if details.rating  < 3 %} no-checked {% else %} checked {% endif %} "
+                        id="check-star"></i>
+                    <i class="fa fa-star fs-6 {% if details.rating  < 4 %} no-checked {% else %} checked {% endif %} "
+                        id="check-star"></i>
+                    <i class="fa fa-star fs-6 {% if details.rating  < 5 %} no-checked {% else %} checked {% endif %} "
+                        id="check-star"></i>
+                    <hr>
+                    {% else %}
+                    <i class="fa fa-star" id="star"></i>
+                    <i class="fa fa-star" id="star"></i>
+                    <i class="fa fa-star" id="star"></i>
+                    <i class="fa fa-star" id="star"></i>
+                    <i class="fa fa-star" id="star"></i>
+                    <span>No ratings</span>
+                    <hr>
+                    {% endif %}
+                    <div class="review-block-description">{{ details.review_desp }}</div>
                 </div>
             </div>
         </div>
     </div>
-</div> {% endcomment %}
+</div>
 
+
+{% endfor %}
 {% endblock body%}
-

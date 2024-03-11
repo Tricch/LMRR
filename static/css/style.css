@@ -63,6 +63,7 @@ body {
   box-shadow: none;
 }
 
+
 /* ################# Login Page and Signup Page ##################*/
 .modal-content {
   padding: 20px 40px;
@@ -202,7 +203,7 @@ body {
 .rec-title {
   border-left: 6px solid orange;
   padding-left: 10px;
-  margin-bottom: 28px;
+  margin: 55px 0 25px;
 }
 
 
@@ -217,6 +218,7 @@ body {
   -ms-scroll-snap-type: x mandatory;
   scroll-snap-type: x mandatory;
 } 
+
 .cards::-webkit-scrollbar {
   height: 12px;
 }
@@ -314,82 +316,8 @@ body {
   color: orange;
 }
 
-/* Three column layout */
-.side {
-  float: left;
-  width: 15%;
-  margin-top: 10px;
-}
 
-.middle {
-  margin-top: 10px;
-  float: left;
-  width: 70%;
-}
-
-/* Place text to the right */
-.right {
-  text-align: left;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* The bar container */
-.bar-container {
-  width: 100%;
-  background-color: #f1f1f1;
-  text-align: center;
-  color: white;
-}
-
-/* Individual bars */
-.bar-5 {
-  width: 60%;
-  height: 18px;
-  background-color: #04AA6D;
-}
-
-.bar-4 {
-  width: 30%;
-  height: 18px;
-  background-color: #2196F3;
-}
-
-.bar-3 {
-  width: 10%;
-  height: 18px;
-  background-color: #00bcd4;
-}
-
-.bar-2 {
-  width: 4%;
-  height: 18px;
-  background-color: #ff9800;
-}
-
-.bar-1 {
-  width: 15%;
-  height: 18px;
-  background-color: #f44336;
-}
-
-/* Responsive layout - make the columns stack on top of each other instead of next to each other */
-@media (max-width: 400px) {
-
-  .side,
-  .middle {
-    width: 100%;
-  }
-
-  .right {
-    display: none;
-  }
-}
+/* Review block */
 
 .review-block {
   background-color: #FAFAFA;
@@ -400,29 +328,22 @@ body {
 }
 
 .review-block-name {
-  font-size: 12px;
-  margin: 10px 0;
+  font-size: 1.2rem;
+  margin: 5px 0;
 }
 
 .review-block-date {
-  font-size: 12px;
-}
-
-.review-block-rate {
-  font-size: 13px;
-  margin-bottom: 15px;
-}
-
-.review-block-title {
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-size: 0.8rem;
 }
 
 .review-block-description {
-  font-size: 13px;
+  font-size: 1.2rem;
 }
 
+.img-rounded{
+  height: 75px;
+  width: 75px;
+}
 
 /* Search */
 .btn-outline-success {

@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import Restaurant, Rating
 from django.db.models import Avg
 from django.db.models import Case, When
+
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
@@ -15,41 +16,41 @@ def recommendation(request):
     ratings = Rating.objects.filter(user=user_detail)
     calculate_reco()
 
-def get_similar(movie_name,rating,corrMatrix):
-    similar_ratings = corrMatrix[movie_name]*(rating-2.5)
+def get_similar(restaurant_name,rating,corrMatrix):
+    similar_ratings = corrMatrix[restaurant_name]*(rating-2.5)
     similar_ratings = similar_ratings.sort_values(ascending=False)
     return similar_ratings
 
 
 def calculate_reco(request):
-    movie_rating=pd.DataFrame(list(Rating.objects.all().values()))
+    restaurant_rating=pd.DataFrame(list(Rating.objects.all().values()))
 
-    new_user=movie_rating.user_id.unique().shape[0]
+    new_user=restaurant_rating.user_id.unique().shape[0]
     current_user_id= request.user.id
-	# if new user not rated any movie
+	# if new user not rated any restaurant
     if current_user_id>new_user:
-        movie=Restaurant.objects.get(id=19)
-        q=Rating(user=request.user,movie=movie,rating=0)
+        restaurant=Restaurant.objects.get(id=19)
+        q=Rating(user=request.user,restaurant=restaurant,rating=0)
         q.save()
 
-    userRatings = movie_rating.pivot_table(index=['user_id'],columns=['movie_id'],values='rating')
+    userRatings = restaurant_rating.pivot_table(index=['user_id'],columns=['restaurant_id'],values='rating')
     userRatings = userRatings.fillna(0,axis=1)
     corrMatrix = userRatings.corr(method='pearson')
 
     user = pd.DataFrame(list(Rating.objects.filter(user=request.user).values())).drop(['user_id','id'],axis=1)
     user_filtered = [tuple(x) for x in user.values]
-    movie_id_watched = [each[0] for each in user_filtered]
+    restaurant_id_watched = [each[0] for each in user_filtered]
 
-    similar_movies = pd.DataFrame()
-    for movie,rating in user_filtered:
-        similar_movies = similar_movies.append(get_similar(movie,rating,corrMatrix),ignore_index = True)
+    similar_restaurants = pd.DataFrame()
+    for restaurant,rating in user_filtered:
+        similar_restaurants = similar_restaurants.append(get_similar(restaurant,rating,corrMatrix),ignore_index = True)
 
-    movies_id = list(similar_movies.sum().sort_values(ascending=False).index)
-    movies_id_recommend = [each for each in movies_id if each not in movie_id_watched]
-    preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(movies_id_recommend)])
-    movie_list=list(Restaurant.objects.filter(id__in = movies_id_recommend).order_by(preserved)[:10])
+    restaurants_id = list(similar_restaurants.sum().sort_values(ascending=False).index)
+    restaurants_id_recommend = [each for each in restaurants_id if each not in restaurant_id_watched]
+    preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(restaurants_id_recommend)])
+    restaurant_list=list(Restaurant.objects.filter(id__in = restaurants_id_recommend).order_by(preserved)[:10])
 
-    context = {'movie_list': movie_list}
+    context = {'restaurant_list': restaurant_list}
     return render(request, 'dashboard.html', context)
 
 
@@ -67,10 +68,8 @@ def dashboard(request):
         jaz_restu = Restaurant.objects.all().filter(genre= 'Jazz')
         pop_restu = Restaurant.objects.all().filter(genre= 'Pop')
         avg_ratings = Restaurant.objects.annotate(avg_rating=Avg(4.0)).order_by('-ratings')[0:10]
-        
-        
-   
-    params = {'resturants': all_restu, 
+            
+        params = {'resturants': all_restu, 
                   'acoustic': acous_restu,
                   'ambient': ambie_restu,
                   'classical': classic_restu,
@@ -79,23 +78,19 @@ def dashboard(request):
                   'pops': pop_restu,
                   'avg_ratings': avg_ratings,
                   }
-
     return render(request, 'dashboard.html', params)
 
 
 def handle_rating(request,pk):
-    print("nnn")
     if request.method == 'POST':
-            print("nnn")
             one_restu = Restaurant.objects.get(id=pk)
             user = request.user.username
-            print("user = ",user)
             user_detail = User.objects.get(username=user)
             star_rating = request.POST.get('rating')
             restu_review = request.POST.get('restu_review')
-            print("dfada = ",star_rating)
             restu_review = Rating(user=user_detail,restaurant=one_restu, rating=star_rating, review_desp = restu_review)
             restu_review.save()
+            messages.success(request, "Your review is successfully submitted!")
     return redirect (f'/restaurant/{pk}')
 
     
@@ -103,10 +98,15 @@ def restaurant(request,pk):
     if request.user.is_authenticated:
         all_restu = Restaurant.objects.all().order_by("-pk")
         one_restu = Restaurant.objects.filter(id=pk)
-        avg_ratings = Restaurant.objects.annotate(avg_rating=Avg(4.0)).order_by('-ratings')[0:10]                  
+        avg_ratings = Restaurant.objects.annotate(avg_rating=Avg(4.0)).order_by('-ratings')[0:10]
+        # rating_details = Rating.objects.filter(rating=one_restu)            
+        # review_details = Rating.objects.all().order_by('-pk')           
+        review_details = Rating.objects.filter(restaurant_id=pk).order_by('-pk')
         params = {'resturants': all_restu,
                   'one_restu':one_restu, 
-                  'avg_ratings':avg_ratings         
+                  'avg_ratings':avg_ratings ,
+                #   'rate': rating_details,
+                  'review': review_details
                 }
         return render(request, 'restaurant.html', params)
     else:
